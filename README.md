@@ -65,7 +65,18 @@ Bots participating in a match are defined in `main.py`. To test your own bot:
 
 1. Create or modify a bot file (see below)
 2. Import your bot into `main.py`
-3. Replace or add it to the list of active players
+   ```python
+   from bots import ConservativeBot, RandomBot, YourBotClassName
+   ```
+4. Replace or add it to the list of active players
+   ```python
+   bots = [
+        ConservativeBot("Conservative_1"),
+        RandomBot("Random_1"),
+        RandomBot("Random_2"),
+        ConservativeBot("Conservative_2"),
+    ]
+   ```
 
 ---
 
