@@ -1,3 +1,5 @@
+#!/usr/bin/env -S python3.11
+
 from __future__ import annotations
 
 import argparse
