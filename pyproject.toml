@@ -1,0 +1,21 @@
+[project]
+name = "pokerbot-competition"
+version = "1.0.0"
+description = ""
+authors = [
+    {name = "justinfn06"},
+    {name = "realconebob",email = "walst110@umn.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pokerkit (>=0.7.3)"
+]
+
+[tool.poetry]
+packages = [{include = "pokerbots", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
