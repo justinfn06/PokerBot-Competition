@@ -41,13 +41,9 @@ source venv/bin/activate
 
 ### 3. Install Dependencies
 
-If a `requirements.txt` file is present:
-
 ```bash
 pip install -r requirements.txt
 ```
-
-If not, the project uses only standard library modules.
 
 ---
 
