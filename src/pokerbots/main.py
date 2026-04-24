@@ -13,25 +13,25 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--hands",
         type=int,
-        default=10,
+        default=100,
         help="Number of hands to run.",
     )
     parser.add_argument(
         "--stack",
         type=int,
-        default=100,
+        default=1000,
         help="Starting stack for every player.",
     )
     parser.add_argument(
         "--small-blind",
         type=int,
-        default=1,
+        default=10,
         help="Small blind amount.",
     )
     parser.add_argument(
         "--big-blind",
         type=int,
-        default=2,
+        default=20,
         help="Big blind amount.",
     )
     parser.add_argument(
