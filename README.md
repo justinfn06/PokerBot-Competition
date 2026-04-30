@@ -156,6 +156,10 @@ Before using your bot in competition or evaluation:
 
 ## Notes
 
-> - Only one bot file should be used per submission or evaluation run
-> - The framework assumes all bots conform to the template interface
-> - Modifying core engine files is not recommended unless necessary for local testing
+- Only one bot file should be used per submission or evaluation run
+  - If you DO submit multiple bots you may only enter one in the competition
+  - You must do so before the tourney starts
+  - If your bots take several winning places, the most winning is the only one which counts, and all other bots will be ignored/dq-ed
+- If your bot crashes the simulation it will be removed from play and you will be disqualified from earning the prize
+- The framework assumes all bots conform to the template interface
+- Modifying core engine files is not recommended unless necessary for local testing

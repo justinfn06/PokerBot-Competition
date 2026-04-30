@@ -1,10 +1,10 @@
-#!/usr/bin/env -S python3.11
+#!/usr/bin/env -S python
 
 from __future__ import annotations
 
 import argparse
 
-from bots import ConservativeBot, RandomBot
+from bots import *
 from engine import PokerEngine
 
 
@@ -57,10 +57,10 @@ def main() -> None:
     args = build_parser().parse_args()
 
     bots = [
-        ConservativeBot("Conservative_1"),
-        RandomBot("Random_1"),
-        RandomBot("Random_2"),
-        ConservativeBot("Conservative_2"),
+        ConservativeBot("Conservative"),
+        RandomBot("Random"),
+        ConnorBot("Connor's Bot"),
+        AllInBot("All In")
     ]
 
     if args.cli:
