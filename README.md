@@ -6,7 +6,8 @@ This repository provides a Python-based environment for developing and testing p
 
 ## Requirements
 
-- **Python 3.12.2** — Using a different version may result in runtime or compatibility issues.
+- **Python 3.12.2** -- Using a different version may result in runtime or compatibility issues.
+- **[TKinter](https://tkdocs.com/tutorial/install.html)** -- Python's primary graphics library. You won't be able to run `main.py` without it
 
 ---
 
@@ -21,31 +22,75 @@ cd <repository-name>
 
 ### 2. Configure Python Environment
 
+#### Option 1: Poetry
+
+#### 1. Install Poetry
+
+##### OSX / Linux / BashOnWindows / Windows+MinGW
+
+```sh
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+##### Windows Powershell
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+#### Note
+
+The Poetry install script does not add the executable to your `PATH`. To use Poetry, you must either specify the full path to the executable (`$HOME/.local/bin` for Unix, `%APPDATA%\Python\Scripts` on Windows), or add it to your path
+
+If you're on Linux, run this to add it to your path
+
+```sh
+echo -e "\n\nPATH="\$PATH:$HOME/.local/bin"" >> ~/.bashrc
+```
+
+#### 2. Activate Poetry's Env
+
+With Poetry installed, it will give you an easy command to activate the project env
+
+```sh
+# Create the project env
+poetry env use <path/to/python3.12>
+
+# Activate the env
+$(poetry env activate)
+```
+
+#### Option 2: VEnv
+
 It is recommended to use a virtual environment.
 
 ```bash
 python3.12 -m venv venv
 ```
 
-Activate the environment:
+#### Activate the environment
 
-**Windows**
-```bash
+##### Windows
+
+```sh
 venv\Scripts\activate
 ```
 
-**macOS/Linux**
-```bash
+##### Unix
+
+```sh
 source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
 
-```bash
+```sh
+# Poetry
+poetry install
+
+# Venv
 pip install -r requirements.txt
 ```
-
----
 
 ## Usage
 
@@ -65,20 +110,21 @@ Bots participating in a match are defined in `main.py`. To test your own bot:
 
 1. Create or modify a bot file (see below)
 2. Import your bot into `main.py`
-   ```python
-   from bots import ConservativeBot, RandomBot, YourBotClassName
-   ```
-4. Replace or add it to the list of active players
-   ```python
-   bots = [
+
+    ```python
+    from bots import ConservativeBot, RandomBot, YourBotClassName
+    ```
+
+3. Replace or add it to the list of active players
+
+    ```python
+    bots = [
         ConservativeBot("Conservative_1"),
         RandomBot("Random_1"),
         RandomBot("Random_2"),
         ConservativeBot("Conservative_2"),
     ]
-   ```
-
----
+    ```
 
 ## Creating a Bot
 
