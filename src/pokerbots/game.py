@@ -5,6 +5,10 @@ from typing import Any
 
 from pokerkit import Automation, NoLimitTexasHoldem
 
+def constant(f):
+    def fset(_this, _value): return
+    def fget(this): return f(this)
+    return property(fget, fset)
 
 @dataclass(frozen=True)
 class HandStartInfo:
@@ -33,6 +37,39 @@ class HoldemGame:
         Automation.CHIPS_PUSHING,
         Automation.CHIPS_PULLING,
     )
+
+    @constant
+    def STATE__PLAYER_ID(_this) -> str: return "player_id"
+    @constant
+    def STATE__HOLE_CARDS(_this) -> str: return "hole_cards"
+    @constant
+    def STATE__COMMUNITY_CARDS(_this) -> str: return "community_cards"
+    @constant
+    def STATE__POT_SIZE(_this) -> str: return "pot_size"
+    @constant
+    def STATE__CURRENT_BET(_this) -> str: return "current_bet"
+    @constant
+    def STATE__CALL_AMOUNT(_this) -> str: return "call_amount"
+    @constant
+    def STATE__MIN_RAISE(_this) -> str: return "min_raise"
+    @constant
+    def STATE__MAX_RAISE(_this) -> str: return "max_raise"
+    @constant
+    def STATE__PLAYER_STACK(_this) -> str: return "player_stack"
+    @constant
+    def STATE__ACTIVE_PLAYERS(_this) -> str: return "active_players"
+    @constant
+    def STATE__FOLDED_PLAYERS(_this) -> str: return "folded_players"
+    @constant
+    def STATE__ALL_IN_PLAYERS(_this) -> str: return "all_in_players"
+    @constant
+    def STATE__BETTING_HISTORY(_this) -> str: return "betting_history"
+    @constant
+    def STATE__CURRENT_PLAYER(_this) -> str: return "current_player"
+    @constant
+    def STATE__ROUND_STAGE(_this) -> str: return "round_stage"
+    @constant
+    def STATE__LEGAL_ACTIONS(_this) -> str: return "legal_actions"
 
     def __init__(
         self,
@@ -158,22 +195,22 @@ class HoldemGame:
             max_raise = int(self.state.max_completion_betting_or_raising_to_amount)
 
         return {
-            "player_id": player_id,
-            "hole_cards": hole_cards,
-            "community_cards": community_cards,
-            "pot_size": self._display_pot_size(),
-            "current_bet": int(max(self.state.bets)) if self.state.bets else 0,
-            "call_amount": call_amount,
-            "min_raise": min_raise,
-            "max_raise": max_raise,
-            "player_stack": player_stacks,
-            "active_players": active_players,
-            "folded_players": folded_players,
-            "all_in_players": all_in_players,
-            "betting_history": [dict(entry) for entry in self.round_betting_history],
-            "current_player": current_player,
-            "round_stage": self.current_round_stage,
-            "legal_actions": legal_actions,
+            self.STATE__PLAYER_ID: player_id,
+            self.STATE__HOLE_CARDS: hole_cards,
+            self.STATE__COMMUNITY_CARDS: community_cards,
+            self.STATE__POT_SIZE: self._display_pot_size(),
+            self.STATE__CURRENT_BET: int(max(self.state.bets)) if self.state.bets else 0,
+            self.STATE__CALL_AMOUNT: call_amount,
+            self.STATE__MIN_RAISE: min_raise,
+            self.STATE__MAX_RAISE: max_raise,
+            self.STATE__PLAYER_STACK: player_stacks,
+            self.STATE__ACTIVE_PLAYERS: active_players,
+            self.STATE__FOLDED_PLAYERS: folded_players,
+            self.STATE__ALL_IN_PLAYERS: all_in_players,
+            self.STATE__BETTING_HISTORY: [dict(entry) for entry in self.round_betting_history],
+            self.STATE__CURRENT_PLAYER: current_player,
+            self.STATE__ROUND_STAGE: self.current_round_stage,
+            self.STATE__LEGAL_ACTIONS: legal_actions,
         }
 
     def apply_action(self, player_id: str, action: tuple) -> dict[str, Any]:
